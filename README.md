@@ -64,7 +64,7 @@ python check_dataset.py
 python main.py --model-a Qwen/Qwen3.5-9B:cheapest --model-b zai-org/GLM-4.5V:cheapest --max-tokens 128
 python inspect_predictions.py
 python evaluate.py
-
+```
 
 
 ## 5. Методика оценки

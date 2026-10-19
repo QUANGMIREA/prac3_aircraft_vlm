@@ -1,0 +1,4 @@
+huggingface_hub>=0.35
+Pillow>=10
+matplotlib>=3.8
+numpy>=1.26

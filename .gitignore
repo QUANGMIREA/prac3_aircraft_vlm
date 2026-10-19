@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+*.log
+results/
+# Images: may be copyrighted; obtain permissions before publishing them.
+images/*
+!images/.gitkeep

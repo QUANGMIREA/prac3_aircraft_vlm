@@ -56,7 +56,7 @@ aircraft_task3/
 cd D:\VSCODE\aircraft_task3
 python -m pip install -r requirements.txt
 python check_dataset.py
-
+```
 
 **Полный запуск:**
 

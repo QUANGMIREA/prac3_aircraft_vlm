@@ -50,26 +50,13 @@ aircraft_task3/
 
 ## 4. Подготовка и запуск (Windows / PowerShell)
 
-Требования: Python 3.11 (или совместимая версия), доступ в интернет, токен Hugging Face с разрешением на использование Inference Providers, положительный баланс для платных запросов.
+Требования: Python 3.11, доступ в интернет, токен Hugging Face с разрешением на использование Inference Providers, положительный баланс для платных запросов.
 
 ```powershell
 cd D:\VSCODE\aircraft_task3
 python -m pip install -r requirements.txt
 python check_dataset.py
-```
 
-Укажите токен только в текущем сеансе PowerShell:
-
-```powershell
-$secure = Read-Host "HF Access Token" -AsSecureString
-$env:HF_TOKEN = [System.Net.NetworkCredential]::new("", $secure).Password
-```
-
-**Проверка одного изображения** (каждый новый запрос к API может быть платным):
-
-```powershell
-python main.py --image military_08.jpg --only-model Qwen/Qwen3.5-9B:cheapest --model-a Qwen/Qwen3.5-9B:cheapest --model-b zai-org/GLM-4.5V:cheapest --max-tokens 128
-```
 
 **Полный запуск:**
 
@@ -77,23 +64,8 @@ python main.py --image military_08.jpg --only-model Qwen/Qwen3.5-9B:cheapest --m
 python main.py --model-a Qwen/Qwen3.5-9B:cheapest --model-b zai-org/GLM-4.5V:cheapest --max-tokens 128
 python inspect_predictions.py
 python evaluate.py
-```
 
-После завершения работы удалите токен из текущей сессии:
 
-```powershell
-Remove-Item Env:HF_TOKEN
-```
-
-**Важно:** модели могут по умолчанию генерировать рассуждения в поле `reasoning_content`, оставляя `content` пустым. В использованной версии `main.py` при вызове `client.chat.completions.create(...)` для обеих моделей передаётся:
-
-```python
-extra_body={
-    "chat_template_kwargs": {"enable_thinking": False}
-}
-```
-
-Это необходимо для получения короткого итогового ответа и предотвращения некорректного статуса `INVALID`. Поддержка параметра зависит от выбранного провайдера. Не следует считать текст из `reasoning_content` окончательной меткой.
 
 ## 5. Методика оценки
 
